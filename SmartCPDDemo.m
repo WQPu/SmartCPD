@@ -1,15 +1,32 @@
 clc;clear;
+%%====================== Read Me===========================
+% This is a demo for SmartCPD, a stocastic mirror descent algorithm for low rank CPD with non-Euclidean losses.
+% Reference: Pu, W., Ibrahim, S., Fu, X., & Hong, M. (2021). 
+% Stochastic Mirror Descent for Low-Rank Tensor Decomposition Under Non-Euclidean Losses. arXiv preprint arXiv:2104.14562.
+%
+% Improtant parameters are explained below:
+% Setups        ----        tensor size, rank, etc.
+% datatype     ----        option for specifying tensor type, i.e.,  'Continuous', 'Binary-I', 'Count-I'
+% losstype     ----        option for specifying loss type, i.e,'Gaussian', 'Beta(b)', 'Bernoulli-I', 'Poisson-I' 
+% constype    ----        option for specifying constraint type, i.e., 'nonnegative', 'simplex'
+% Ten             ----        struct variavle, includes generated data tensor and its latent matrices
+% ops_smd    ----        algorithm parameters of SmartCPD
+% SMDSet    ----         struct variavle, includes different algorithm parameters of SmartCPD
+%
+% 
+% Coded by Wenqiang Pu, Shahana Ibrahim, Xiao Fu email: wenqiangpu@cuhk.edu.cn, (xiao.fu,ibrahish)@oregonstate.edu
+%%====================== Read Me===========================
 %% Setups 
 [ Setups ] = initialTensor( ); % set tensor size, rank, etc
 
 %% Generate Tensor
 datatype = 'Count-I'; % 'Continuous' (for Beta Div.), 'Binary-I' (for Bernoulli), 'Count-I' (for Poisson)
-noisetype = 'NoNoise'; % NoNoise, Gaussian, Gamma
+noisetype = 'NoNoise'; % 'NoNoise', 'Gaussian', 'Gamma'
 noisedb = 40; %SNR in dB
 
 %% Problem Type
-losstype = 'Beta(1)'; %Gaussian, Beta(b), Bernoulli-I, Poisson-I
-constype = 'nonnegative'; % nonnegative, simplex
+losstype = 'Beta(1)'; %'Gaussian', 'Beta(b)', 'Bernoulli-I', 'Poisson-I'
+constype = 'nonnegative'; % 'nonnegative', 'simplex'
 
 %% Simulation runs
 seed_n = 1; % number of random seeds
